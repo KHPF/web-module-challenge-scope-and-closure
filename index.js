@@ -117,7 +117,7 @@ function InningScore(cbk){
 function sBoard(InningScore, inning, numInnings ) {
   let  home = 0;
   let  away = 0;
-  for(let i = 0; i < numInnings; i++){
+   for(let i = 0; i < numInnings; i++){
     let score = InningScore(inning);
     home =+ score.Home;
     away =+ score.Away;
