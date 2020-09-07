@@ -27,9 +27,9 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *  counter 1 is setting count to 0 and counter 2 is incrementing count by 1
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *    counter 2 is using a closure because its reaching out of its scope and
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
 */
@@ -56,9 +56,10 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(){
 
-    /*Code Here*/
+    let points = Math.floor(Math.random() *3)
+    return points;
 
 }
 
@@ -76,11 +77,18 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(cbk,num){
+  const score = {Home:0,Away:0};
 
-  /*Code Here*/
+  for(let i=0;i<num;i++){
+    score.Home=score.Home + cbk();
+    score.Away=score.Away + cbk();
+
+  }
+  return score;
 
 }
+console.log(finalScore(inning,9))
 
 /* Task 4: 
 
@@ -103,8 +111,20 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function InningScore(cbk){
+  return {Away: cbk(), Home: cbk()}; 
+}
+function sBoard(InningScore, inning, numInnings ) {
+  let  home = 0;
+  let  away = 0;
+   for(let i = 0; i < numInnings; i++){
+    let score = InningScore(inning);
+    home =+ score.Home;
+    away =+ score.Away;
+    console.log(`inning number ${i} - Away Team: ${score.Away} Home Team: ${score.Home}`)
+  }
+    console.log(`Final Score - Away Team : ${away} Home Team: ${home}`)
 }
 
 
+sBoard(InningScore, inning, 9)
